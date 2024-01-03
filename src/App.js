@@ -2,7 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import MenuContent from './Components/MenuContent';
 import Home from './Components/Home';
-import Toeic from './Components/Toeic';
+import Main from './Components/Main';
 import NotFound from './Components/NotFound';
 import './App.css';
 import Header from './Components/Header';
@@ -16,7 +16,7 @@ export default function App() {
         <div className='wrap_content'>
           <Routes>
             <Route path='/' element={<Home />}></Route>
-            <Route path='/toeic/:id/*' element={<Toeic />}></Route>
+            <Route path='/toeic/:id/*' element={<Main />}></Route>
             <Route path='/*' element={<NotFound />}></Route>
           </Routes>
         </div>

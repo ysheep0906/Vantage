@@ -3,6 +3,7 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import '../css/Header.css'
 
 const avatar_setting ={
   width: '30px',

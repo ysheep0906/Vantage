@@ -1,11 +1,10 @@
 import React from "react";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes} from "react-router-dom";
 import QuizStart from "./QuizStart";
 import ToeicQuiz from "./ToeicQuiz";
+import '../css/Main.css'
 
-export default function Toeic() {
-  const params =useParams();
-  const toeicId = params.id;
+export default function Main() {
   return (
     <div className="main">
       <div className="quiz">

@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PersonIcon from '@mui/icons-material/Person';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import '../css/MenuContent.css'
 
 export default function MenuContent() {
   const quiz = ['토익 단어 (초급)', '토익 단어 (중급)', '토익 단어 (고급)'];
