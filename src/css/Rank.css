@@ -1,0 +1,25 @@
+.rank_root {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.rank_root .rank {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  background-color: var(--white-color);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  border-radius: 8px;
+  align-items: center;
+  text-align: center;
+}
+
+.rank_root .rank .rank_title {
+  margin: 0;
+  line-height: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
