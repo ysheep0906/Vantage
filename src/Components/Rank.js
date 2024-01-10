@@ -1,5 +1,6 @@
 import React from "react";
 import Chart from 'react-apexcharts';
+import '../css/Rank.css'
 
 export default function Rank() {
   const radialData = {
@@ -10,6 +11,7 @@ export default function Rank() {
         radialBar: {
           dataLabels: {
             name: {
+              fontSize: '30px',
               offsetY: 10,
               color: '#ffbf00' // 안쪽 글자 색깔
             },
@@ -33,7 +35,7 @@ export default function Rank() {
         <h5 className="rank_title">Rank</h5>
         <div>
           <Chart
-            options={radialData.options} series={radialData.series} type="radialBar" height='300'
+            options={radialData.options} series={radialData.series} type="radialBar" height='350'
 
           />
         </div>

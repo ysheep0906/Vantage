@@ -10,6 +10,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import '../css/Header.css'
+import profileImage from '../asset/images/profile.jpg'
 
 const avatar_setting ={
   width: '30px',
@@ -43,7 +44,7 @@ export default function Header() {
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
         >
-          <Avatar sx={avatar_setting}></Avatar>
+          <Avatar src={profileImage} sx={avatar_setting}></Avatar>
           <span className="state"></span>
           <span className="name">영또사랑시니못생겼어 님</span>
         </button>

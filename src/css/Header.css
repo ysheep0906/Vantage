@@ -41,5 +41,7 @@
 
 .header .profile .name {
   margin-right: 5px;
+  font-size: 13px;
+  font-weight: 500;
   color: var(--text-grey-color);
 }

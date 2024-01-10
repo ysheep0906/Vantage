@@ -1,0 +1,92 @@
+.progressItem {
+  width: calc(50% - 24px);
+  height: fit-content;
+  box-sizing: border-box;
+  padding: 24px;
+  margin: 0;
+  margin-left: 24px;
+  margin-top: 24px;
+  background-color: var(--white-color);
+  box-shadow: var(--shadow);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+.progressItem .titleIcons{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.progressItem .titleIcons .pending {
+  border-radius: 8px;
+  background-color: var(--text-grey-color);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--white-color);
+  padding: 3px 12px;
+  height: fit-content;
+  align-items: center;
+}
+
+.progressItem .titleIcons .inProgress{
+  border-radius: 8px;
+  background-color: var(--more-blue-color);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--white-color);
+  padding: 3px 12px;
+  height: fit-content;
+  align-items: center;
+}
+
+.progressItem .titleIcons .completed {
+  border-radius: 8px;
+  background-color: rgb(39, 206, 136);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--white-color);
+  padding: 3px 12px;
+  height: fit-content;
+  align-items: center;
+}
+
+.progressItem h5 {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 600;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.progressItem p {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--text-grey-color);
+  margin: 0;
+}
+
+.progressItem .progressBar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.progressItem .progressBar span {
+  flex: 1 1 0%;
+  margin-right: 10px;
+}
+
+.progressItem .progressBar h6 {
+  font-size: 12px;
+  font-weight: 600;
+}

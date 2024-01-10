@@ -67,30 +67,16 @@
   margin-left: 5px;
 }
 
-/* Rank */
+/* overview */
 
-.main .rank_root {
-  width: 100%;
-  margin-top: 24px;
-}
-
-.main .rank_root .rank {
-  padding: 14px;
+.main .overview {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 30%;
-  background-color: var(--white-color);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  border-radius: 8px;
-  align-items: center;
-  text-align: center;
 }
 
-.main .rank_root .rank .rank_title {
-  margin: 0;
-  line-height: 1;
-  font-size: 14px;
-  font-weight: 600;
+.main .overview .userProgress {
+  width: 100%;
+  display: flex;
+  flex-flow: wrap;
+  margin-bottom: 24px;
 }
+
