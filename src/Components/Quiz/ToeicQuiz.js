@@ -2,8 +2,9 @@ import React from "react";
 import IconButton from '@mui/material/IconButton';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import StarIcon from '@mui/icons-material/Star';
+import FastForwardIcon from '@mui/icons-material/FastForward';
 import { useState } from "react";
-import '../css/ToeicQuiz.css'
+import '../../css/Quiz/ToeicQuiz.css'
 
 export default function ToeicQuiz() {
   const [bookmark, setBookmark] = useState(0);
@@ -11,7 +12,7 @@ export default function ToeicQuiz() {
   const bookmarkOnclick = () => {
     if (bookmark === 0)
       setBookmark(1);
-    else 
+    else
       setBookmark(0);
   }
 
@@ -29,7 +30,9 @@ export default function ToeicQuiz() {
 
       <div className="word_root">
         <p className="word">outstanding</p>
-        <p className="pronunciation">[aʊtˈstændɪŋ]</p>
+        <button className="forward">
+          <FastForwardIcon />
+        </button>
       </div>
 
       <div className="choices">
@@ -38,7 +41,7 @@ export default function ToeicQuiz() {
         <button>조사하다</button>
         <button>균일한</button>
       </div>
-      
+
     </div>
   );
 }

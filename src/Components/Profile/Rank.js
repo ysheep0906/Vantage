@@ -1,6 +1,6 @@
 import React from "react";
 import Chart from 'react-apexcharts';
-import '../css/Rank.css'
+import '../../css/Profile/Rank.css'
 
 export default function Rank() {
   const radialData = {
@@ -24,6 +24,14 @@ export default function Rank() {
       labels: ['Gold'], // 등급이 여기서 바뀜
       fill: {
         colors: ['#ffbf00'] //트랙 색깔
+      },
+      grid: {
+        padding: {
+          top: -30,
+          right: 0,
+          bottom: -30,
+          left: 0
+        }
       }
     },
   }
@@ -36,7 +44,6 @@ export default function Rank() {
         <div>
           <Chart
             options={radialData.options} series={radialData.series} type="radialBar" height='350'
-
           />
         </div>
       </div>

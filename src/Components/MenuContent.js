@@ -6,7 +6,7 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import '../css/MenuContent.css'
 
 export default function MenuContent() {
-  const quiz = ['토익 단어 (초급)', '토익 단어 (중급)', '토익 단어 (고급)'];
+  const quiz = ['토익 단어 (Day 1~10)', '토익 단어 (Day 11~20)', '토익 단어 (Day 21~30)'];
   const sat = ['수능 단어 (초급)', '수능 단어 (중급)', '수능 단어 (고급)'];
   const management = ['프로필', '프로젝트 1', '프로젝트 2'];
   let management_lis= [];

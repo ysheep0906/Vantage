@@ -4,9 +4,10 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import PlaceIcon from '@mui/icons-material/Place';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Rank from "./Rank";
+import UserDetails from "./UserDetails";
 import Progress from "./Progress";
-import profileImage from '../asset/images/profile.jpg'
-import '../css/Profile.css';
+import profileImage from '../../asset/images/profile.jpg'
+import '../../css/Profile/Profile.css'
 
 const avatar_setting = {
   width: '92px',
@@ -94,7 +95,10 @@ export default function Profile() {
 
       {/* Overview */}
       <div className="overview">
-        <Rank />
+        <div className="userOverview">
+          <Rank />
+          <UserDetails />
+        </div>
         <div className="userProgress">
           {lis}
         </div>

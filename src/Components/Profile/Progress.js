@@ -1,7 +1,7 @@
 import React from "react"
 import LinearProgress from '@mui/material/LinearProgress';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
-import '../css/Progress.css';
+import '../../css/Profile/Progress.css';
 
 export default function Progress(props) {
 
