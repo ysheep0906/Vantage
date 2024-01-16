@@ -24,8 +24,8 @@ export default function UserDetails() {
             color: '#ffcb81',
             backgroundColor: '#fff4e3',
             borderRadius: '4px',
-            width: '35px',
-            height: '35px',
+            width: '40px',
+            height: '40px',
             padding: '4px',
             boxSizing: 'border-box'
           }}/>
@@ -39,8 +39,8 @@ export default function UserDetails() {
             color: '#3fa5f0',
             backgroundColor: 'rgb(242, 249, 254)',
             borderRadius: '4px',
-            width: '35px',
-            height: '35px',
+            width: '40px',
+            height: '40px',
             padding: '4px',
             boxSizing: 'border-box'
           }}/>
@@ -54,8 +54,8 @@ export default function UserDetails() {
             color: '#ff316f',
             backgroundColor: '#ffd6e2',
             borderRadius: '4px',
-            width: '35px',
-            height: '35px',
+            width: '40px',
+            height: '40px',
             padding: '4px',
             boxSizing: 'border-box'
           }}/>
@@ -69,8 +69,8 @@ export default function UserDetails() {
             color: '#9d9eff',
             backgroundColor: '#e8e8ff',
             borderRadius: '4px',
-            width: '35px',
-            height: '35px',
+            width: '40px',
+            height: '40px',
             padding: '4px',
             boxSizing: 'border-box'
           }}/>
@@ -84,8 +84,8 @@ export default function UserDetails() {
             color: '#27ce88',
             backgroundColor: '#d4f5e7',
             borderRadius: '4px',
-            width: '35px',
-            height: '35px',
+            width: '40px',
+            height: '40px',
             padding: '4px',
             boxSizing: 'border-box'
           }}/>

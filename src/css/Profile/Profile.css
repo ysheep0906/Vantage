@@ -20,6 +20,7 @@
   height: 200px;
   width: 100%;
   overflow: hidden;
+  z-index: 2; /* Header z-index: 1*/
 }
 
 .main .profile .profile-description {

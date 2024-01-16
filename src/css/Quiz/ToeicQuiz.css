@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .quiz_main .quiz_header {
@@ -20,18 +21,18 @@
 }
 
 .quiz_main .word_root .word {
-  font-size: 80px;
+  font-size: 90px;
   font-weight: bold;
   margin: 0;
 }
 
 .quiz_main .word_root .forward {
   margin: 0;
-  margin-top: 14px;
+  margin-top: 24px;
   padding: 8px;
   background-color: var(--blue-color);
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   color: var(--white-color);
 }
@@ -53,12 +54,13 @@
 .quiz_main .choices button {
   background-color:var(--black-color);
   color: var(--white-color);
-  font-size: 20px;
+  font-size: 23px;
   font-weight: bold;
   width: 40%;
-  height: 40%;
+  height: 80px;
+  margin-bottom: 24px;
   border: var(--white-color) 1px solid;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 .quiz_main .choices button:hover {

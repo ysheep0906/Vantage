@@ -20,11 +20,11 @@ export default function ToeicQuiz() {
     <div className="quiz_main">
       <div className="quiz_header">
         <IconButton>
-          <HeadphonesIcon />
+          <HeadphonesIcon fontSize="large"/>
         </IconButton>
         <IconButton
           onClick={bookmarkOnclick}>
-          <StarIcon color={bookmark === 0 ? "default" : "primary"} />
+          <StarIcon color={bookmark === 0 ? "default" : "primary"} fontSize="large"/>
         </IconButton>
       </div>
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../../css/Quiz/QuizStart.css'
 
-export default function QuizStart() {
+export default function QuizStart(props) {
   return (
     <div className="quiz_start">
       <p>Are You Ready?</p>
@@ -13,7 +13,7 @@ export default function QuizStart() {
           <div class="droplet"></div>
         </div>
       </div>
-      <Link to="quiz"><button className="start">시작하기</button></Link>
+      <button className="start" onClick={props.onStartClick}>시작하기</button>
     </div>
   );
 }

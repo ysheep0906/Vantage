@@ -46,7 +46,7 @@ export default function Header() {
         >
           <Avatar src={profileImage} sx={avatar_setting}></Avatar>
           <span className="state"></span>
-          <span className="name">영또사랑시니못생겼어 님</span>
+          <span className="name">양신희 님</span>
         </button>
 
         <Menu

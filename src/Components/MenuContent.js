@@ -14,15 +14,15 @@ export default function MenuContent() {
   let sat_lis = [];
   
   for(let i =0;i<management.length;i++) {
-    management_lis.push(<NavLink key={i} to={'/management/'+i}><button className='menu_item'><PersonIcon /><span>{management[i]}</span></button></NavLink>)
+    management_lis.push(<NavLink key={i} to={'management/'+i}><button className='menu_item'><PersonIcon /><span>{management[i]}</span></button></NavLink>)
   }
 
   for(let i =0; i<quiz.length; i++) {
-    quiz_lis.push(<NavLink key ={i} to={'/toeic/'+i}><button className='menu_item'><MenuBookIcon /><span>{quiz[i]}</span></button></NavLink>)
+    quiz_lis.push(<NavLink key ={i} to={'toeic/'+i}><button className='menu_item'><MenuBookIcon /><span>{quiz[i]}</span></button></NavLink>)
   }
 
   for(let i =0; i<sat.length; i++) {
-    sat_lis.push(<NavLink key ={i} to={'/sat/'+i}><button className='menu_item'><MenuBookIcon /><span>{sat[i]}</span></button></NavLink>)
+    sat_lis.push(<NavLink key ={i} to={'sat/'+i}><button className='menu_item'><MenuBookIcon /><span>{sat[i]}</span></button></NavLink>)
   }
   
   return (
