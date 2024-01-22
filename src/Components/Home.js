@@ -1,14 +1,9 @@
 import React from "react";
-import { Link , Routes, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
 import '../css/Home.css';
-
-// const name = <div>
-//   <TextField id="lastName" label="성" variant="outlined" />
-//   <TextField id="firstName" label="이름" variant="outlined" />
-// </div>
 
 export default function Home() {
   return (
@@ -18,16 +13,13 @@ export default function Home() {
       </div>
       <div className="homeBody">
         <div className="homeLogin">
-          <AcUnitIcon sx={{ color: '#3fa5f0' }} fontSize="large"/>
+          <AcUnitIcon sx={{ color: '#3fa5f0' }} fontSize="large" />
           <h1 className='logo_text'>Vantage</h1>
           <p className="register">
             새로 오셨습니까?
-            <Link to="register">회원가입</Link>
+            <Link to="/register">회원가입</Link>
           </p>
           <div className="loginForm">
-            {/* <Routes>
-              <Route path="register" element={name}></Route>
-            </Routes> */}
             <TextField id="email" label="Email" variant="outlined" />
             <TextField id="password" label="Password" type="password" />
             <div className="remember">
@@ -45,5 +37,3 @@ export default function Home() {
     </div>
   );
 }
-
-//<Link to='kr'><button className="start">시작하기</button></Link>

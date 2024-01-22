@@ -1,0 +1,5 @@
+.homeMain .homeBody .homeLogin .loginForm .name {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
