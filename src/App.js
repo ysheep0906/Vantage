@@ -10,6 +10,7 @@ export default function App() {
     <div className="wrap_root">
       <Routes>
         <Route path='/' element={<Home />}></Route>
+        <Route path='/register' element={<Home />}></Route>
         <Route path='/kr/*' element={<Main />}></Route>
         <Route path='*' element={<NotFound />}></Route>
       </Routes>

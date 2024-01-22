@@ -1,3 +1,88 @@
-.start {
-  background-color: aqua;
+.homeMain {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+
+.homeMain .homeImage {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.homeMain .homeBody {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeMain .homeBody .homeLogin {
+  text-align: center;
+  max-width: 550px;
+  width: 100%;
+  padding: 32px;
+}
+
+.homeMain .homeBody .homeLogin .logo_text {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 16px;
+}
+
+.homeMain .homeBody .homeLogin .register {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-grey-color);
+}
+
+.homeMain .homeBody .homeLogin .register a {
+  text-decoration: none;
+  color: var(--blue-color);
+  margin-left: 5px;
+}
+
+.homeMain .homeBody .homeLogin .loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.homeMain .homeBody .homeLogin .loginForm .remember {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.homeMain .homeBody .homeLogin .loginForm .remember div {
+  display: flex;
+  align-items: center;
+}
+
+.homeMain .homeBody .homeLogin .loginForm .remember div span {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.6; 
+}
+
+.homeMain .homeBody .homeLogin .loginForm .remember .forgetPassword {
+  color: red;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.75;
+  border-radius: 4px;
+}
+
+.homeMain .homeBody .homeLogin .loginForm .loginButton {
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.75;
+  color: var(--white-color);
+  background-color: var(--blue-color);
+  border-radius: 4px;
+  padding: 0.6rem 1.5rem;
 }
