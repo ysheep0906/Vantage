@@ -27,13 +27,13 @@
 }
 
 .homeMain .homeBody .homeLogin .logo_text {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 700;
   margin-top: 16px;
 }
 
 .homeMain .homeBody .homeLogin .register {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 500;
   color: var(--text-grey-color);
 }
@@ -47,7 +47,7 @@
 .homeMain .homeBody .homeLogin .loginForm {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 25px;
 }
 
 .homeMain .homeBody .homeLogin .loginForm .remember {
@@ -62,26 +62,33 @@
 }
 
 .homeMain .homeBody .homeLogin .loginForm .remember div span {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.6; 
 }
 
 .homeMain .homeBody .homeLogin .loginForm .remember .forgetPassword {
-  color: red;
-  font-size: 12px;
+  color: blue;
+  font-size: 15px;
   font-weight: 600;
   line-height: 1.75;
   border-radius: 4px;
 }
 
+.homeMain .homeBody .homeLogin .loginForm .errMsg {
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  color: #ff003e;
+}
+
 .homeMain .homeBody .homeLogin .loginForm .loginButton {
   align-items: center;
-  font-size: 12px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.75;
   color: var(--white-color);
   background-color: var(--blue-color);
   border-radius: 4px;
-  padding: 0.6rem 1.5rem;
+  padding: 0.8rem 1.5rem;
 }

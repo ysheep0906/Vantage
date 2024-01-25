@@ -2,8 +2,8 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home';
-import Main from './Components/Main';
 import Register from './Components/Login/Register';
+import Main from './Components/Main';
 import NotFound from './Components/NotFound';
 
 export default function App() {

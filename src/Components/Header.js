@@ -60,17 +60,17 @@ export default function Header() {
           
         >
           <MenuItem onClick={handleClose}>
-            <PersonIcon sx={{marginRight: '10px'}}/>
-            프로필
+            <PersonIcon sx={{marginRight: '10px', fontSize: '20px'}}/>
+            <p className="menuitemTitle">프로필</p>
             </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Settings sx={{marginRight: '10px'}}/>
-            설정
+            <Settings sx={{marginRight: '10px', fontSize: '20px'}}/>
+            <p className="menuitemTitle">설정</p>
             </MenuItem>
           <Divider />
           <MenuItem onClick={handleClose}>
-            <LogoutIcon sx={{marginRight: '10px'}}/>
-            로그아웃
+            <LogoutIcon sx={{marginRight: '10px', fontSize: '20px'}}/>
+            <p className="menuitemTitle">로그아웃</p>
             </MenuItem>
         </Menu>
       </div>

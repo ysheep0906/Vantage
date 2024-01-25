@@ -28,12 +28,10 @@ export default function MenuContent() {
   return (
     <div className='side_bar'>
       <div className='side_bar_top'>
-        <NavLink to='/'>
-          <button className="menuContent_logo">
+          <div className="menuContent_logo">
             <AcUnitIcon sx={{ color: '#3fa5f0'}}/>
-            <span className='logo_text'>Vantage</span>
-          </button>
-        </NavLink>
+            <span className='logo_text'>VANTAGE</span>
+          </div>
       </div>
       
       <div className='side_bar_menu'>
