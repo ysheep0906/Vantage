@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {Route, Routes, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import QuizStart from "./QuizStart";
 import ToeicQuiz from "./ToeicQuiz";
-import NotFound from '../NotFound';
 import '../../css/Quiz/QuizMain.css';
 
 export default function QuizMain() {
@@ -14,12 +13,12 @@ export default function QuizMain() {
     setStart(true);
   }
 
-  const handleStartFalse = () => {
-    setStart(false);
-  }
+  // const handleStartFalse = () => {
+  //   setStart(false);
+  // }
 
   useEffect (() => {
-    if(nowId != id) {
+    if(nowId !== id) {
       setStart(false);
       setNowId(id);
     }

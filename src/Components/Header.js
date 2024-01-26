@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import SearchIcon from '@mui/icons-material/Search';
@@ -20,12 +22,26 @@ const avatar_setting ={
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
+
   const handleClick = (e) => {
     setAnchorEl(e.currentTarget);
   }
+
   const handleClose = () => {
     setAnchorEl(null);
   }
+
+  const handleLogout = async () => {
+    try {
+      await axios.post('http://localhost:4000/logout');
+      console.log('logout success');
+      navigate('/');
+    } catch(error) {
+      console.error('Error during logout:', error);
+    }
+  }; 
+
   return (
     <div className="header_root">
       <div className="header">
@@ -62,16 +78,16 @@ export default function Header() {
           <MenuItem onClick={handleClose}>
             <PersonIcon sx={{marginRight: '10px', fontSize: '20px'}}/>
             <p className="menuitemTitle">프로필</p>
-            </MenuItem>
+          </MenuItem>
           <MenuItem onClick={handleClose}>
             <Settings sx={{marginRight: '10px', fontSize: '20px'}}/>
             <p className="menuitemTitle">설정</p>
-            </MenuItem>
+          </MenuItem>
           <Divider />
-          <MenuItem onClick={handleClose}>
+          <MenuItem onClick={handleLogout}>
             <LogoutIcon sx={{marginRight: '10px', fontSize: '20px'}}/>
             <p className="menuitemTitle">로그아웃</p>
-            </MenuItem>
+          </MenuItem>
         </Menu>
       </div>
     </div>
