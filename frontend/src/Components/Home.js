@@ -9,21 +9,21 @@ import '../css/Home.css';
 export default function Home() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-  const [errMessage, setErrMessage] = useState('');
+  // const navigate = useNavigate();
+  // const [errMessage, setErrMessage] = useState('');
 
-  const handleLogin = async () => {
-    try {
-      const response = await axios.post('http://localhost:4000/login', {id,password});
-      console.log(response.data);
-      if(response.data.success === true)
-        navigate('/kr');
+  // const handleLogin = async () => {
+  //   try {
+  //     const response = await axios.post('http://localhost:4000/login', {id,password});
+  //     console.log(response.data);
+  //     if(response.data.success === true)
+  //       navigate('/kr');
 
-    } catch(error) {
-      console.error('Login failed', error.response.data.message);
-      setErrMessage(error.response.data.message);
-    }
-  }
+  //   } catch(error) {
+  //     console.error('Login failed', error.response.data.message);
+  //     setErrMessage(error.response.data.message);
+  //   }
+  // }
 
   
   return (
@@ -49,8 +49,8 @@ export default function Home() {
               </div>
               {/*<button className="forgetPassword">비밀번호 찾기</button>*/}
             </div>
-            <p className="errMsg">{errMessage}</p>
-            <button className="loginButton" onClick={handleLogin}>로그인</button>
+            {/*<p className="errMsg">{errMessage}</p>*/}
+            <button className="loginButton" >로그인</button>
           </div>
         </div>
       </div>

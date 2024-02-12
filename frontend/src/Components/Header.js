@@ -32,15 +32,15 @@ export default function Header() {
     setAnchorEl(null);
   }
 
-  const handleLogout = async () => {
-    try {
-      await axios.post('http://localhost:4000/logout');
-      console.log('logout success');
-      navigate('/');
-    } catch(error) {
-      console.error('Error during logout:', error);
-    }
-  }; 
+  // const handleLogout = async () => {
+  //   try {
+  //     await axios.post('http://localhost:4000/logout');
+  //     console.log('logout success');
+  //     navigate('/');
+  //   } catch(error) {
+  //     console.error('Error during logout:', error);
+  //   }
+  // }; 
 
   return (
     <div className="header_root">
@@ -84,7 +84,7 @@ export default function Header() {
             <p className="menuitemTitle">설정</p>
           </MenuItem>
           <Divider />
-          <MenuItem onClick={handleLogout}>
+          <MenuItem onClick={handleClose}>
             <LogoutIcon sx={{marginRight: '10px', fontSize: '20px'}}/>
             <p className="menuitemTitle">로그아웃</p>
           </MenuItem>
