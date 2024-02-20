@@ -3,3 +3,41 @@
   display: flex;
   justify-content: space-between;
 }
+
+.homeMain .homeBody .homeLogin .loginForm .loginFormTitle {
+  display: flex;
+}
+
+.homeMain .homeBody .homeLogin .loginForm .loginFormTitle p {
+  margin: 0;
+  font-weight: 600;
+}
+
+.homeMain .homeBody .homeLogin .loginForm .loginFormId {
+  display: flex;
+  width: 100%;
+}
+
+.homeMain .homeBody .homeLogin .loginForm .loginFormId .idForm {
+  margin: 0;
+  padding: 0;
+  flex-grow: 2;
+}
+
+.homeMain .homeBody .homeLogin .loginForm .loginFormId button {
+  font-size: 14px;
+  font-weight: 600;
+  flex-grow: 1;
+  border: 1px solid var(--blue-color);
+  border-radius: 4px;
+  color: var(--blue-color);
+}
+
+.homeMain .homeBody .homeLogin .loginForm .loginFormId button:hover {
+  background-color: rgb(217, 231, 242);
+}
+
+.homeMain .homeBody .homeLogin .loginForm .jobAndAddress {
+  display: flex;
+  gap: 25px;
+}

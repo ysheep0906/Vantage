@@ -1,16 +1,18 @@
 .homeMain {
   width: 100%;
-  height: 100%;
-  display: flex;
 }
 
 .homeMain .homeImage {
+  position: fixed;
+  left: 0;
   width: 50%;
   height: 100%;
   overflow: hidden;
 }
 
 .homeMain .homeBody {
+  margin: auto;
+  margin-left: 50%;
   width: 50%;
   height: 100%;
   display: flex;
@@ -42,6 +44,10 @@
   text-decoration: none;
   color: var(--blue-color);
   margin-left: 5px;
+}
+
+.homeMain .homeBody .homeLogin .register a:hover {
+  color: var(--black-color);
 }
 
 .homeMain .homeBody .homeLogin .loginForm {
@@ -91,4 +97,8 @@
   background-color: var(--blue-color);
   border-radius: 4px;
   padding: 0.8rem 1.5rem;
+}
+
+.homeMain .homeBody .homeLogin .loginForm .loginButton:hover {
+  background-color: var(--more-blue-color);
 }

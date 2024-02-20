@@ -7,7 +7,7 @@ import axios from 'axios';
 import '../css/Home.css';
 
 export default function Home() {
-  const [id, setId] = useState('');
+  const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
   // const navigate = useNavigate();
   // const [errMessage, setErrMessage] = useState('');
@@ -27,7 +27,7 @@ export default function Home() {
 
   
   return (
-    <div className="homeMain">
+    <div className="homeMain" style={{height:'100vh'}}>
       <div className="homeImage">
         <img src="https://picsum.photos/1200/1200" alt="" />
       </div>
@@ -40,7 +40,7 @@ export default function Home() {
             <Link to="/register">회원가입</Link>
           </p>
           <div className="loginForm">
-            <TextField onChange={e => setId(e.target.value)} id="id" label="아이디" variant="outlined" />
+            <TextField onChange={e => setUserid(e.target.value)} id="userid" label="아이디"/>
             <TextField onChange={e => setPassword(e.target.value)} id="password" label="비밀번호" type="password" />
             <div className="remember">
               <div>
@@ -50,6 +50,7 @@ export default function Home() {
               {/*<button className="forgetPassword">비밀번호 찾기</button>*/}
             </div>
             {/*<p className="errMsg">{errMessage}</p>*/}
+
             <button className="loginButton" >로그인</button>
           </div>
         </div>

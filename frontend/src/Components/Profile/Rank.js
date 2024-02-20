@@ -4,7 +4,7 @@ import '../../css/Profile/Rank.css'
 
 export default function Rank() {
   const radialData = {
-    series: [60], //퍼센트 양
+    series: [20], //퍼센트 양
     options: {
       chart: { type: 'radialBar', },
       plotOptions: {
@@ -13,7 +13,7 @@ export default function Rank() {
             name: {
               fontSize: '30px',
               offsetY: 10,
-              color: '#ffbf00' // 안쪽 글자 색깔
+              color: '#CD7F32' // 안쪽 글자 색깔
             },
             value: {
               show: false,
@@ -21,9 +21,9 @@ export default function Rank() {
           }
         },
       },
-      labels: ['Gold'], // 등급이 여기서 바뀜
+      labels: ['Bronze'], // 등급이 여기서 바뀜
       fill: {
-        colors: ['#ffbf00'] //트랙 색깔
+        colors: ['#CD7F32'] //트랙 색깔
       },
       grid: {
         padding: {
