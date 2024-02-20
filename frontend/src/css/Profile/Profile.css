@@ -23,6 +23,11 @@
   z-index: 2; /* Header z-index: 1*/
 }
 
+.main .profile .profile-image img {
+  object-fit: cover;
+  object-position: top;
+}
+
 .main .profile .profile-description {
   display: flex;
   align-items: center;

@@ -7,11 +7,12 @@ import Rank from "./Rank";
 import UserDetails from "./UserDetails";
 import Progress from "./Progress";
 import profileImage from '../../asset/images/profile.jpg'
+import profileBackgroundImage from '../../asset/images/background_image.jpg'
 import '../../css/Profile/Profile.css'
 
 const avatar_setting = {
   width: '92px',
-  height: '92px'
+  height: '92px',
 }
 const progressData = [
   {
@@ -74,14 +75,14 @@ export default function Profile() {
       {/* Profile */}
       <div className="profile">
         <div className="profile-image">
-          <img src="https://picsum.photos/970/720" alt="User Cover"
+          <img src={profileBackgroundImage} alt="User Cover"
             height='100%' width='100%' style={{ 'objectFit': 'cover' }} />
         </div>
         <div className="profile-description">
           <div className="user">
-            <Avatar src={profileImage} sx={avatar_setting}></Avatar>
+            <Avatar src={profileImage === '' ? '' : profileImage} sx={avatar_setting}></Avatar> 
             <div className="name">
-              <h3>UI Designer</h3>
+              <h3>양파카</h3>
             </div>
           </div>
           <div className="blank"></div>
