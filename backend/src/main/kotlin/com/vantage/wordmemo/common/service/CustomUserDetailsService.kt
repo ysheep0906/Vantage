@@ -1,5 +1,6 @@
 package com.vantage.wordmemo.common.service
 
+import com.vantage.wordmemo.common.dto.CustomUser
 import com.vantage.wordmemo.member.entity.Member
 import com.vantage.wordmemo.member.repository.MemberRepository
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -22,7 +23,8 @@ class CustomUserDetailsService(
 
     //user instance를 userdetails로 반환
     private fun createUserDetails(member: Member): UserDetails =
-        User(
+        CustomUser( //token을 생성할 때 claim에 user id도 같이 저장
+            member.id!!,
             member.loginId,
             passwordEncoder.encode(member.password),
             member.memberRole!!.map { SimpleGrantedAuthority("ROLE_${it.role}") }
