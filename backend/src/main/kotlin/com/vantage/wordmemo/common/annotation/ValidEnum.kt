@@ -1,4 +1,4 @@
-package com.englishTest.vantage.common.annotation
+package com.vantage.wordmemo.common.annotation
 
 import jakarta.validation.Constraint
 import jakarta.validation.ConstraintValidator
@@ -6,12 +6,11 @@ import jakarta.validation.ConstraintValidatorContext
 import jakarta.validation.Payload
 import kotlin.reflect.KClass
 
-//for validation check ex) 회원 서비스라면 성별 조건, 날짜 조건, 비밀번호 조건 등
-
 @Target(AnnotationTarget.FIELD)
 @Retention(AnnotationRetention.RUNTIME)
 @MustBeDocumented
 @Constraint(validatedBy = [ValidEnumValidator::class])
+//validation을 체크하는 class
 annotation class ValidEnum(
     val message: String = "Invalid enum value",
     val groups: Array<KClass<*>> = [],
@@ -19,6 +18,7 @@ annotation class ValidEnum(
     val enumClass: KClass<out Enum<*>>
 )
 
+//enum class를 check하기 위한 class
 class ValidEnumValidator : ConstraintValidator<ValidEnum, Any> {
     private lateinit var enumValues: Array<out Enum<*>>
 
@@ -26,11 +26,13 @@ class ValidEnumValidator : ConstraintValidator<ValidEnum, Any> {
         enumValues = annotation.enumClass.java.enumConstants
     }
 
-    //사용자로부터 받은 값의 validation check
+    //실제 check하는 부분
     override fun isValid(value: Any?, context: ConstraintValidatorContext): Boolean {
+        //사용자가 입력한 값이 value
         if (value == null) {
             return true
         }
+        //value가 enumValues내에 존재하는 값이면 true 아니면 flase
         return enumValues.any { it.name == value.toString()}
     }
 }

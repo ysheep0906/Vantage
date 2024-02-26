@@ -1,10 +1,10 @@
-package com.englishTest.vantage
+package com.vantage.wordmemo
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class VantageApplicationTests {
+class WordmemoApplicationTests {
 
 	@Test
 	fun contextLoads() {

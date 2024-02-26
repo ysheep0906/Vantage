@@ -1,11 +1,11 @@
-package com.englishTest.vantage
+package com.vantage.wordmemo
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class VantageApplication
+class WordmemoApplication
 
 fun main(args: Array<String>) {
-	runApplication<VantageApplication>(*args)
+	runApplication<WordmemoApplication>(*args)
 }
