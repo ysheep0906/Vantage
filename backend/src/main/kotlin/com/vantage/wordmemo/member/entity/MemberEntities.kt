@@ -1,0 +1,71 @@
+package com.vantage.wordmemo.member.entity
+
+import com.vantage.wordmemo.common.status.ROLE
+import jakarta.persistence.*
+import java.time.LocalDate
+
+//DB관련
+@Entity
+@Table(
+    //loginId도 unique 제약조건 추가
+    uniqueConstraints = [UniqueConstraint(name = "uk_member_login_id", columnNames = ["loginId"])]
+)
+class Member(
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    var id: Long? = null,
+
+    @Column(nullable = false, length = 10)
+    val name: String,
+
+    @Column(nullable = false, length = 30, updatable = false)
+    val loginId: String,
+
+    @Column(nullable = false, length = 100)
+    val password: String,
+
+
+    @Column(nullable = true, length = 50)
+    var nickname: String? = null,
+
+    @Column(nullable = true, length = 100)
+    var email: String? = null,
+
+    @Column(nullable = true, length = 50)
+    var job: String? = null,
+
+    @Column(nullable = true, length = 100)
+    var address: String? = null,
+
+    @Column(nullable = true)
+    @Temporal(TemporalType.DATE) //날짜만 입력 가능
+    var birthDate: LocalDate? = null,
+
+    /* 사용 미정
+    @Column(nullable = ture, length = 5)
+    @Enumerated(EnumType.STRING)
+    val gender: Gender,
+    */
+
+){
+    //member entity에서 member role을 조회할 수 있도록 연결
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    val memberRole: List<MemberRole>? = null
+}
+
+@Entity
+class MemberRole(
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    var id: Long? = null,
+
+    //권한
+    @Column(nullable = false, length = 30)
+    @Enumerated(EnumType.STRING)
+    val role: ROLE,
+
+    //member table에 연결(many - one으로 연결)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(foreignKey = ForeignKey(name = "fk_member_role_member_id"))
+    val member: Member,
+)
