@@ -41,10 +41,13 @@ class JwtTokenProvider{
         val accessExpiration = Date(now.time + EXPIRATION_MILLISECONDS)
 
         // Access Token
+        //token 생성 시 token에 너무 많은 정보를 담게 되면 api 호출시 전송되는 양 증가, 또한 개인 정보를 담게 되면 토큰 탈취시 보안 문제 발생
+        // => 최소한의 정보만 담는 것이 좋음
         val accessToken = Jwts
             .builder()
             .setSubject(authentication.name)
             .claim("auth", authorities) //권한들을 claim에다가 담음
+            .claim("userId", (authentication.principal as CustomUser).userId) //token 생성 시 claim에 userId도 같이 저장
             .setIssuedAt(now) //발행시간
             .setExpiration(accessExpiration) //유효시간
             .signWith(key, SignatureAlgorithm.HS256) //어떤 알고리즘을 사용하는 지 명시
@@ -63,13 +66,15 @@ class JwtTokenProvider{
 
         //auth를 뽑아옴, 없으면 예외처리
         val auth = claims["auth"] ?: throw RuntimeException("잘못된 토큰입니다.")
+        val userId = claims["userId"] ?: throw RuntimeException("잘못된 토큰입니다.")
+
 
         //권한 정보 추출
         val authorities: Collection<GrantedAuthority> = (auth as String)
             .split(",")
             .map { SimpleGrantedAuthority(it) }
 
-        val principal: UserDetails = User(claims.subject, "", authorities)
+        val principal: UserDetails = CustomUser(userId.toString().toLong(), claims.subject, "", authorities)
 
         //추출한 권한 정보를 토대로 authentication을 반환
         return UsernamePasswordAuthenticationToken(principal, "", authorities)

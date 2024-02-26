@@ -1,8 +1,10 @@
 package com.vantage.wordmemo.member.entity
 
 import com.vantage.wordmemo.common.status.ROLE
+import com.vantage.wordmemo.member.dto.MemberDtoResponse
 import jakarta.persistence.*
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 //DB관련
 @Entity
@@ -51,6 +53,14 @@ class Member(
     //member entity에서 member role을 조회할 수 있도록 연결
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
     val memberRole: List<MemberRole>? = null
+
+    //birthDate형식을 String으로 변환해 반환하는 함수
+    private fun LocalDate.formatDate(): String =
+        this.format(DateTimeFormatter.ofPattern("yyyyMMdd"))
+
+    //MemberDtoResponse 반환
+    fun toDto(): MemberDtoResponse =
+        MemberDtoResponse(id!!, name, loginId, nickname, job, address, email, birthDate?.formatDate())
 }
 
 @Entity

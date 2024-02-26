@@ -7,11 +7,13 @@ import com.vantage.wordmemo.common.exception.InvalidInputException
 import com.vantage.wordmemo.common.status.ROLE
 import com.vantage.wordmemo.member.dto.LoginDto
 import com.vantage.wordmemo.member.dto.MemberDtoRequest
+import com.vantage.wordmemo.member.dto.MemberDtoResponse
 import com.vantage.wordmemo.member.entity.Member
 import com.vantage.wordmemo.member.entity.MemberRole
 import com.vantage.wordmemo.member.repository.MemberRepository
 import com.vantage.wordmemo.member.repository.MemberRoleRepository
 import jakarta.transaction.Transactional
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.stereotype.Service
@@ -57,6 +59,15 @@ class MemberService(
 
         //문제가 없으면 token을 발행하고 반환
         return jwtTokenProvider.createToken(authentication)
+    }
+
+    /**
+     * 내 정보 조회
+     */
+    //회원번호를 받아 Repository에서 member를 조회후 MemberDtoResponse 형식으로 반환
+    fun searchMyInfo(id: Long): MemberDtoResponse {
+        val member: Member = memberRepository.findByIdOrNull(id) ?: throw InvalidInputException("id", "회원번호(${id})가 존재하지 않는 유저입니다.")
+        return member.toDto()
     }
 
 }

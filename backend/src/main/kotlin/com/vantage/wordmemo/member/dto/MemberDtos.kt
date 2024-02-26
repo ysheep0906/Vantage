@@ -103,3 +103,17 @@ data class LoginDto(
     val password: String
         get() = _password!!
 }
+
+//회원 조회를 위한 DTO
+data class MemberDtoResponse(
+    val id: Long,
+    val name: String,
+    val loginId: String,
+    val nickname: String?,
+    val job: String?,
+    val address: String?,
+    val email: String?,
+    val birthDate: String?,
+    //val gender: String,
+
+)
