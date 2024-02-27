@@ -70,4 +70,14 @@ class MemberService(
         return member.toDto()
     }
 
+    /**
+     * 내 정보 수정
+     */
+    //memberDtoRequest를 받아 memeber를 생성후 repository에 저장
+    fun saveMyInfo(memberDtoRequest: MemberDtoRequest): String {
+        val member: Member = memberDtoRequest.toEntity()
+        memberRepository.save(member)
+        return "수정이 완료되었습니다."
+    }
+
 }
