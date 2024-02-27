@@ -14,7 +14,7 @@ export default function Home() {
 
   const LoginCheck = async () => {
     try {
-      const response = await axios.post('http://localhost:8080/user/signin', {
+      const response = await axios.post('http://localhost:8080/user/signup', {
         "loginId": userid,
         "password" : password
       });
