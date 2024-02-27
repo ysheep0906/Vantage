@@ -9,21 +9,23 @@ import '../css/Home.css';
 export default function Home() {
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
-  // const navigate = useNavigate();
-  // const [errMessage, setErrMessage] = useState('');
+  const navigate = useNavigate();
+  const [errMessage, setErrMessage] = useState('');
 
-  // const handleLogin = async () => {
-  //   try {
-  //     const response = await axios.post('http://localhost:4000/login', {id,password});
-  //     console.log(response.data);
-  //     if(response.data.success === true)
-  //       navigate('/kr');
+  const LoginCheck = async () => {
+    try {
+      const response = await axios.post('http://localhost:8080/user/signin', {
+        "loginId": userid,
+        "password" : password
+      });
+      console.log(response.data);
+        // navigate('/kr');
 
-  //   } catch(error) {
-  //     console.error('Login failed', error.response.data.message);
-  //     setErrMessage(error.response.data.message);
-  //   }
-  // }
+    } catch(error) {
+      console.error('Login failed', error.response.data.message);
+      setErrMessage(error.response.data.message);
+    }
+  }
 
   
   return (
@@ -51,7 +53,7 @@ export default function Home() {
             </div>
             {/*<p className="errMsg">{errMessage}</p>*/}
 
-            <button className="loginButton" >로그인</button>
+            <button className="loginButton" onClick={LoginCheck}>로그인</button>
           </div>
         </div>
       </div>

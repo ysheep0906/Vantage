@@ -30,32 +30,51 @@ export default function Register() {
   }
 
 
-  const IdDoubleCheck = () => {
+  const IdDoubleCheck = async () => {
     //중복 확인 함수
+    if (userid === '') {
+      console.log('아이디를 입력해주세요!')
+    } else {
+      try {
+        const response =  await axios.post('http://localhost:8080/user/idcheck', { 'loginid': userid });
+        if (response.data) {
+          console.log(response.data);
+        } else {
+           console.error('Response data is undefined');
+        }
+      } catch(error) {
+        console.log(error);
+      }
+    }
   }
 
   const SignupCheck = async () => {
     
     //회원가입 버튼 누르기 전에 빈 칸 없는지 확인, 중복확인
-    // if (errPwd === true && username !== '' && userid !== '' && password !== '') {
+    if (errPwd === true && username !== '' && userid !== '' && password !== '' && nickname !== '' && email !== '' && job !== '' && address !== '') {
      
-      // try {
-      //   const response = await axios.post('http://192.168.219.103:8080/user/signup', {
-      //     'name': username,
-      //     'username': userid,
-      //     'password': password
-      //   });
-      //   console.log('Hello');
-      //   if (response.data) {
-      //     console.log(response.data);
-      //     //navigate('/');
-      //   } else {
-      //     console.error('Response data is undefined');
-      //   }
-      // } catch (error) {
-      //   console.error('Error during signup:', error);
-      // }
-//  }
+      try {
+        const response = await axios.post('http://localhost:8080/user/signup', {
+          "name": username,
+          "loginId": userid,
+          "password": password,
+          "birthDate": '2024-02-27',
+          "job": job,
+          "nickname": nickname,
+          "address": address,
+          "email": email
+        });
+        console.log('Hello');
+        if (response.data) {
+          console.log(response.data);
+          //navigate('/');
+        } else {
+          console.error('Response data is undefined');
+        }
+      } catch (error) {
+        console.error('Error during signup:', error);
+      }
+    }
   };
 
   return (
