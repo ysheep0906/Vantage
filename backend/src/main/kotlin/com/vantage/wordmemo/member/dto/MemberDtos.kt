@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter
 
 //회원 정보 관련 dto
 data class MemberDtoRequest(
-    val id: Long?,
+    var id: Long?,
 
     @field:NotBlank
     @JsonProperty("name")
