@@ -5,6 +5,7 @@ import { TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/mater
 import axios from "axios";
 import '../../css/Login/Register.css'
 
+
 export default function Register() {
   const [username, setUsername] = useState('');
   const [userid, setUserid] = useState('');
@@ -29,7 +30,6 @@ export default function Register() {
       return false;
   }
 
-
   const IdDoubleCheck = async () => {
     //중복 확인 함수
     if (userid === '') {
@@ -51,8 +51,7 @@ export default function Register() {
   const SignupCheck = async () => {
     
     //회원가입 버튼 누르기 전에 빈 칸 없는지 확인, 중복확인
-    if (errPwd === true && username !== '' && userid !== '' && password !== '' && nickname !== '' && email !== '' && job !== '' && address !== '') {
-     
+    if (handlePasswordCheck() !== false && username !== '' && userid !== '' && password !== '' && nickname !== '' && email !== '' && job !== '' && address !== '') {
       try {
         const response = await axios.post('http://localhost:8080/user/signup', {
           "name": username,
@@ -64,10 +63,11 @@ export default function Register() {
           "address": address,
           "email": email
         });
-        console.log('Hello');
         if (response.data) {
+          
           console.log(response.data);
-          //navigate('/');
+          navigate('/?signup=true');
+
         } else {
           console.error('Response data is undefined');
         }
@@ -136,6 +136,7 @@ export default function Register() {
             </FormControl>
             </div>
             <button className="loginButton" onClick={SignupCheck}>회원가입</button>
+            
           </div>
         </div>
       </div>
