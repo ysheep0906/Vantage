@@ -22,8 +22,8 @@ export default function Home() {
         // navigate('/kr');
 
     } catch(error) {
-      console.error('Login failed', error.response.data.message);
-      setErrMessage(error.response.data.message);
+      console.error('Login failed', error);
+      setErrMessage(error);
     }
   }
 
