@@ -2,34 +2,36 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
 import { useLocation } from "react-router";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import TextField from '@mui/material/TextField';
-import Checkbox from '@mui/material/Checkbox';
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import {TextField, Checkbox, Snackbar, Alert} from '@mui/material';
 import axios from 'axios';
+import {useSetRecoilState} from 'recoil';
+import {bearerAtom} from '../recoil/atoms';
 import '../css/Home.css';
 
 export default function Home() {
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
+  const [errMessage, setErrMessage] = useState(''); // 어떤 것이 문제인지 체크
+  const setBearer = useSetRecoilState(bearerAtom);
+
   const navigate = useNavigate();
-  const [errMessage, setErrMessage] = useState('');
   const location = useLocation();
 
   const LoginCheck = async () => {
-    console.log('id', 'password')
+
     try {
       const response = await axios.post('http://localhost:8080/user/signin', {
         "loginId": userid,
         "password": password
       });
-      console.log(response.data);
-      // navigate('/kr');
+      setBearer(response.data.data.accessToken);
+      navigate('/kr');
 
     } catch (error) {
       console.error('Login failed', error);
       setErrMessage(error);
     }
+
   }
 
   const [open, setOpen] = useState(false);
@@ -53,7 +55,7 @@ export default function Home() {
     if (isSignup === 'true') {
       handleClick();
     }
-  }, []);
+  }, [location.search]);
 
   return (
     <div className="homeMain" style={{ height: '100vh' }}>
@@ -76,10 +78,11 @@ export default function Home() {
                 <Checkbox id='checkbox' disable />
                 <span>로그인 상태 유지</span>
               </div>
-              {/*<button className="forgetPassword">비밀번호 찾기</button>*/}
+              {/*<button className="forgetPassword">비밀번호 찾기</button>  추가기능*/} 
             </div>
-            {/*<p className="errMsg">{errMessage}</p>*/}
+            {errMessage === '' ? '' : <Alert severity="error">{errMessage}</Alert>}
 
+            
             <button className="loginButton" onClick={LoginCheck}>로그인</button>
           </div>
         </div>
