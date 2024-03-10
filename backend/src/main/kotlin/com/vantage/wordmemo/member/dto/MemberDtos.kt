@@ -117,3 +117,8 @@ data class MemberDtoResponse(
     //val gender: String,
 
 )
+
+//로그인 중복체크를 위한 DTO
+data class LoginIdRequest(
+    val loginId: String
+)

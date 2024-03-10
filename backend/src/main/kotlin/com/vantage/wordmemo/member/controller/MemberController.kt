@@ -4,6 +4,7 @@ import com.vantage.wordmemo.common.authority.TokenInfo
 import com.vantage.wordmemo.common.dto.BaseResponse
 import com.vantage.wordmemo.common.dto.CustomUser
 import com.vantage.wordmemo.member.dto.LoginDto
+import com.vantage.wordmemo.member.dto.LoginIdRequest
 import com.vantage.wordmemo.member.dto.MemberDtoRequest
 import com.vantage.wordmemo.member.dto.MemberDtoResponse
 import com.vantage.wordmemo.member.service.MemberService
@@ -18,6 +19,17 @@ class MemberController(
     private val memberService: MemberService
 ) {
     /**
+     * ID중복검사
+     */
+    @PostMapping("/idcheck")
+    fun checkIdDuplicate(@RequestBody loginIdRequest: LoginIdRequest): BaseResponse<Unit> {
+        val resultMsg: String = memberService.checkIdDuplicate(loginIdRequest)
+        return BaseResponse(message = resultMsg)
+
+    }
+
+
+    /**
      * 회원가입
      */
     @PostMapping("/signup")
@@ -25,6 +37,8 @@ class MemberController(
         val resultMsg: String = memberService.signUp(memberDtoRequest)
             return BaseResponse(message = resultMsg)
     }
+
+
 
     /**
      * 로그인

@@ -6,6 +6,7 @@ import com.vantage.wordmemo.common.authority.TokenInfo
 import com.vantage.wordmemo.common.exception.InvalidInputException
 import com.vantage.wordmemo.common.status.ROLE
 import com.vantage.wordmemo.member.dto.LoginDto
+import com.vantage.wordmemo.member.dto.LoginIdRequest
 import com.vantage.wordmemo.member.dto.MemberDtoRequest
 import com.vantage.wordmemo.member.dto.MemberDtoResponse
 import com.vantage.wordmemo.member.entity.Member
@@ -29,17 +30,25 @@ class MemberService(
     private val jwtTokenProvider: JwtTokenProvider,
 ) {
     /**
-     * 회원가입
+     * ID중복검사
      */
-    fun signUp(memberDtoRequest: MemberDtoRequest): String{
-        //ID중복 검사
-        var member: Member? = memberRepository.findByLoginId(memberDtoRequest.loginId)
-        if(member != null){ //member가 null이 아니라면 repository에 loginId가 이미 존재하는 것
+    fun checkIdDuplicate(loginIdRequest: LoginIdRequest): String {
+        val member: Member? = memberRepository.findByLoginId(loginIdRequest.loginId)
+        if(member != null){
             throw InvalidInputException("loginId", "이미 등록된 ID 입니다.")
         }
 
+        return "사용 가능한 ID 입니다."
+    }
+
+
+
+    /**
+     * 회원가입
+     */
+    fun signUp(memberDtoRequest: MemberDtoRequest): String{
         //member entity를 생성하고 DB에 등록
-        member = memberDtoRequest.toEntity()
+        val member = memberDtoRequest.toEntity()
         memberRepository.save(member) //새로 만든 memeber를 repository에 저장
 
         //member의 Role을 Member로 설정후 DB에 등록
@@ -48,6 +57,8 @@ class MemberService(
 
         return "회원가입이 완료되었습니다."
     }
+
+
 
     /**
      * 로그인 -> 토큰 발행
