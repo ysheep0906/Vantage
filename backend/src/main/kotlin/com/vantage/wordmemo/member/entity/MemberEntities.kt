@@ -63,6 +63,7 @@ class Member(
         MemberDtoResponse(id!!, name, loginId, nickname, job, address, email, birthDate?.formatDate())
 }
 
+//권한 릴레이션
 @Entity
 class MemberRole(
     @Id
@@ -78,4 +79,37 @@ class MemberRole(
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(foreignKey = ForeignKey(name = "fk_member_role_member_id"))
     val member: Member,
+)
+
+//단어 릴레이션
+@Entity
+@Table(name = "word")
+class Word(
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    var id: Long? = null,
+
+    @Column(nullable = false, length = 50)
+    val word: String,
+
+    @Column(nullable = false, length = 255)
+    val meaning: String,
+
+    @Column(nullable = true, length = 255)
+    var altMeaning1: String? = null,
+
+    @Column(nullable = true, length = 255)
+    var altMeaning2: String? = null,
+
+    @Column(nullable = true, length = 255)
+    var altMeaning3: String? = null,
+
+    @Column(nullable = true, length = 255)
+    var altMeaning4: String? = null,
+
+    @Column(nullable = true, length = 255)
+    var altMeaning5: String? = null,
+
+    @Column(nullable = true, length = 255)
+    var altMeaning6: String? = null
 )

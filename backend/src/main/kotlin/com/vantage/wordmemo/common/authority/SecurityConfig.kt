@@ -24,7 +24,7 @@ class SecurityConfig(
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) } //JWT를 사용하기에 session은 미사용
             //실제 권한관리는 아래에 있는 내용 -> 추가되는 url에 권환 설정이 필요하면 아래에 내용 추가
             .authorizeHttpRequests {
-                it.requestMatchers("/user/signup", "/user/signin").anonymous() //이 url을 호출하는 사람은 인증되지 않은 사용자여야 함
+                it.requestMatchers("/user/idcheck", "/user/signup", "/user/signin").anonymous() //이 url을 호출하는 사람은 인증되지 않은 사용자여야 함
                     .requestMatchers("/user/**").hasRole("MEMBER") //이외의 user url 접근은 모두 Member 권한이 존재하는 경우 접근 가능
                     .anyRequest().permitAll() //그 이외의 request는 아무 권한 없이 모두가 요청 가능
             }
