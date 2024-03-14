@@ -5,8 +5,8 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import {TextField, Checkbox, Snackbar, Alert} from '@mui/material';
 import axios from 'axios';
 import {useSetRecoilState} from 'recoil';
-import {bearerAtom} from '../recoil/atoms';
-import '../css/Home.css';
+import {bearerAtom} from '../../recoil/atoms';
+import '../../css/Login/Home.css';
 
 export default function Home() {
   const [userid, setUserid] = useState('');
@@ -20,12 +20,16 @@ export default function Home() {
   const LoginCheck = async () => {
 
     try {
-      const response = await axios.post('http://localhost:8080/user/signin', {
+      await axios.post('http://localhost:8080/user/signin', {
         "loginId": userid,
         "password": password
-      });
-      setBearer(response.data.data.accessToken);
-      navigate('/kr');
+      }).then(res => {
+        setBearer(res.data.data.accessToken);
+        navigate('/kr');
+      }).catch(err => {
+        console.log(err.response.data.data)
+      })
+      
 
     } catch (error) {
       console.error('Login failed', error);
@@ -75,7 +79,7 @@ export default function Home() {
             <TextField onChange={e => setPassword(e.target.value)} id="password" label="비밀번호" type="password" />
             <div className="remember">
               <div>
-                <Checkbox id='checkbox' disable />
+                <Checkbox id='checkbox' />
                 <span>로그인 상태 유지</span>
               </div>
               {/*<button className="forgetPassword">비밀번호 찾기</button>  추가기능*/} 

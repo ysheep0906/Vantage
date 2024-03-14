@@ -11,7 +11,7 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver #maria DB 사용
     url: jdbc:mariadb://localhost:3306/vantage
     username: root
-    password: 2487
+    password: 8840
   jpa:
     open-in-view: true
     hibernate:

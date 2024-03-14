@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Avatar from '@mui/material/Avatar';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import PlaceIcon from '@mui/icons-material/Place';
@@ -9,6 +9,8 @@ import Progress from "./Progress";
 import profileImage from '../../asset/images/profile.jpg'
 import profileBackgroundImage from '../../asset/images/background_image.jpg'
 import '../../css/Profile/Profile.css'
+import { useRecoilValue } from "recoil";
+import { nicknameAtom, jobAtom, addressAtom, birthDateAtom } from "../../recoil/atoms";
 
 const avatar_setting = {
   width: '92px',
@@ -59,16 +61,26 @@ const progressData = [
   },
 ]
 export default function Profile() {
-  
+  const nickname = useRecoilValue(nicknameAtom);
+  const job = useRecoilValue(jobAtom);
+  const address = useRecoilValue(addressAtom);
+  const birthDate = useRecoilValue(birthDateAtom);
+
+
   let lis = [];
   for(let i=0; i <progressData.length; i++) {
-    lis.push(<Progress 
+    lis.push(<Progress key={i}
       title={progressData[i].title} 
       total={progressData[i].total}
       success={progressData[i].success}
       percent={progressData[i].percent}/>
       )
   }
+
+  useEffect(()=> {
+
+  },[])
+
   return (
     <div className="main">
 
@@ -82,14 +94,14 @@ export default function Profile() {
           <div className="user">
             <Avatar src={profileImage === '' ? '' : profileImage} sx={avatar_setting}></Avatar> 
             <div className="name">
-              <h3>양파카</h3>
+              <h3>{nickname}</h3>
             </div>
           </div>
           <div className="blank"></div>
           <div className="information">
-            <div><ApartmentIcon /><span>대학생</span></div>
-            <div><PlaceIcon /><span>서울특별시</span></div>
-            <div><CalendarMonthIcon /><span>2023년 1월 8일 가입</span></div>
+            <div><ApartmentIcon /><span>{job}</span></div>
+            <div><PlaceIcon /><span>{address}</span></div>
+            <div><CalendarMonthIcon /><span>{birthDate} 가입</span></div>
           </div>
         </div>
       </div>

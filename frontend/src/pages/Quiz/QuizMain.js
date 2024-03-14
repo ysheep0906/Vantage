@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {useParams} from "react-router-dom";
-import QuizStart from "./QuizStart";
-import ToeicQuiz from "./ToeicQuiz";
+import QuizStart from "../../Components/Quiz/QuizStart";
+import ToeicQuiz from "../../Components/Quiz/ToeicQuiz";
 import '../../css/Quiz/QuizMain.css';
 
 export default function QuizMain() {

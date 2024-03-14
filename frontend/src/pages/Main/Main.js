@@ -1,10 +1,10 @@
-import React from "react";
+import {React} from "react";
 import { Routes, Route } from 'react-router-dom';
-import MenuContent from './MenuContent';
-import Profile from './Profile/Profile';
-import QuizMain from './Quiz/QuizMain';
-import Header from './Header';
-import '../css/Main.css';
+import MenuContent from '../../layouts/Menu/MenuContent';
+import Profile from '../../Components/Profile/Profile';
+import QuizMain from '../Quiz/QuizMain';
+import Header from '../../layouts/Header/Header';
+import '../../css/Main.css';
 
 export default function Main() {
   return (

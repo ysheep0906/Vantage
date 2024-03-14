@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PersonIcon from '@mui/icons-material/Person';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
-import '../css/MenuContent.css'
+import '../../css/layout/MenuContent.css';
 
 export default function MenuContent() {
   const quiz = ['토익 단어 (Day 1~10)', '토익 단어 (Day 11~20)', '토익 단어 (Day 21~30)'];

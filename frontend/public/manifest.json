@@ -4,13 +4,13 @@
   "icons": [
     {
       "src": "logo.png",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "38x38",
       "type": "image/png"
     },
     {
       "src": "logo.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "38x38"
     }
   ],
   "start_url": ".",

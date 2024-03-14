@@ -19,7 +19,13 @@ export default function Register() {
   const [progress, setProgress] = useState(false);
   const [flagId, setFlagId] = useState(false);
   const [idDoubleCheck, setIdDoubleCheck] = useState(true);
+  const [idMsg, setIdMsg] = useState('');
   const navigate = useNavigate();
+
+  const checkId = () => {
+    if(idMsg === '사용 가능한 ID 입니다.' || idMsg === '') return true;
+    else return false;
+  }
 
   const checkPassword = () => {
     if(password === '') return true;
@@ -42,7 +48,6 @@ export default function Register() {
 
   const setBtnSignup = () => {
     if(flagId === true) {
-      setProgress(true);
       setIdDoubleCheck(true);
       SignupCheck(); 
     } else {
@@ -53,23 +58,29 @@ export default function Register() {
   const IdDoubleCheck = async () => {
     //중복 확인 함수
     setFlagId(true); // 중복 확인이 true가 되었을 때 flag를 true로 바꿔야 함
-    // if (userid === '') {
-    //   console.log('아이디를 입력해주세요!')
-    // } else {
-    //   try {
-    //     const response =  await axios.post('http://localhost:8080/user/idcheck', { 'loginid': userid });
-    //     if (response.data) {
-    //       console.log(response.data);
-    //     } else {
-    //        console.error('Response data is undefined');
-    //     }
-    //   } catch(error) {
-    //     console.log(error);
-    //   }
-    // }
+    if (userid === '') {
+      console.log('아이디를 입력해주세요!')
+    } else {
+      try {
+        await axios.post('http://localhost:8080/user/idcheck', { 'loginId': userid })
+          .then(res => {
+            setIdMsg(res.data.message);
+          }).catch(err => {
+            setIdMsg(err.response.data.data.loginId);
+          })
+        
+      } catch(error) {
+        console.log(error);
+      }
+    }
   }
 
   const SignupCheck = async () => {
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = ('0' + (today.getMonth() + 1)).slice(-2);
+    let day = ('0' + today.getDate()).slice(-2);
+    let dateString = year + '-' + month + '-' + day;
     
     //회원가입 버튼 누르기 전에 빈 칸 없는지 확인, 중복확인
     if (handlePasswordCheck() !== false && checkPassword() !== false && checkEmail() !== false && //비밀번호와 이메일이 비워지면 flag값이 true가 되지만 밑 조건으로 조건에 걸리게 됨
@@ -79,12 +90,13 @@ export default function Register() {
           "name": username,
           "loginId": userid,
           "password": password,
-          "birthDate": '2024-02-27',
+          "birthDate": dateString,
           "job": job,
           "nickname": nickname,
           "address": address,
           "email": email
         });
+        setProgress(true);
         if (response.data) {
           
           console.log(response.data);
@@ -116,12 +128,12 @@ export default function Register() {
             <div className="loginFormTitle"><p>기본 정보</p></div>
             <TextField onChange={e => setUsername(e.target.value)} id="lastName" label="이름"/>
             <div className="loginFormId">
-              <div className="idForm"><TextField onChange={e => setUserid(e.target.value)} id="userid" label="아이디" fullWidth/></div>
+              <div className="idForm"><TextField onChange={e => {setUserid(e.target.value); setFlagId(false);}} id="userid" label="아이디" error={!checkId()} helperText={idMsg} fullWidth/></div>
               <button onClick={IdDoubleCheck}>중복 확인</button>
             </div>
             <TextField onChange={e => setPassword(e.target.value)} id="password" label="비밀번호" type="password" error={!checkPassword()} helperText="비밀번호 최소 8자에서 16자까지, 영문, 숫자 및 특수문자 포함"/>
 
-            <TextField onChange={e => setErrPwd(e.target.value)} id="password" label="비밀번호 확인" type="password" error={!handlePasswordCheck()} helperText={handlePasswordCheck() ? "" : "일치하지 않음"} />
+            <TextField onChange={e => setErrPwd(e.target.value)} id="errpwd" label="비밀번호 확인" type="password" error={!handlePasswordCheck()} helperText={handlePasswordCheck() ? "" : "일치하지 않음"} />
             
             <br/>
             <div className="loginFormTitle"><p>닉네임</p></div>
@@ -135,25 +147,25 @@ export default function Register() {
             <FormControl fullWidth>
               <InputLabel id="job">직업</InputLabel>
               <Select value={job} label="직업" onChange={e => setJob(e.target.value)}>
-                <MenuItem value={0}>무직</MenuItem>
-                <MenuItem value={1}>학생</MenuItem>
-                <MenuItem value={2}>직장인</MenuItem>
+                <MenuItem value='무직'>무직</MenuItem>
+                <MenuItem value='학생'>학생</MenuItem>
+                <MenuItem value='직장인'>직장인</MenuItem>
               </Select>
             </FormControl>
 
             <FormControl fullWidth>
               <InputLabel id="job">거주지</InputLabel>
               <Select value={address} label="거주지" onChange={e => setAddress(e.target.value)}>
-                <MenuItem value={0}>서울특별시</MenuItem>
-                <MenuItem value={1}>경기도</MenuItem>
-                <MenuItem value={2}>강원도</MenuItem>
-                <MenuItem value={3}>충청북도</MenuItem>
-                <MenuItem value={4}>충청남도</MenuItem>
-                <MenuItem value={5}>전라북도</MenuItem>
-                <MenuItem value={6}>전라남도</MenuItem>
-                <MenuItem value={7}>경상북도</MenuItem>
-                <MenuItem value={8}>경상남도</MenuItem>
-                <MenuItem value={9}>제주도</MenuItem>
+                <MenuItem value='서울특별시'>서울특별시</MenuItem>
+                <MenuItem value='경기도'>경기도</MenuItem>
+                <MenuItem value='강원도'>강원도</MenuItem>
+                <MenuItem value='충청북도'>충청북도</MenuItem>
+                <MenuItem value='충청남도'>충청남도</MenuItem>
+                <MenuItem value='전라북도'>전라북도</MenuItem>
+                <MenuItem value='전라남도'>전라남도</MenuItem>
+                <MenuItem value='경상북도'>경상북도</MenuItem>
+                <MenuItem value='경상남도'>경상남도</MenuItem>
+                <MenuItem value='제주도'>제주도</MenuItem>
               </Select>
             </FormControl>
             </div>

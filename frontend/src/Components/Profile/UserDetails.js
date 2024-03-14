@@ -6,9 +6,17 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import PlaceIcon from '@mui/icons-material/Place';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ApartmentIcon from '@mui/icons-material/Apartment';
+import { useRecoilValue } from "recoil";
+import { nicknameAtom, emailAtom, jobAtom, addressAtom, birthDateAtom } from "../../recoil/atoms";
 import '../../css/Profile/UserDetails.css';
 
 export default function UserDetails() {
+  const nickname = useRecoilValue(nicknameAtom);
+  const email = useRecoilValue(emailAtom);
+  const job = useRecoilValue(jobAtom);
+  const address = useRecoilValue(addressAtom);
+  const birthDate = useRecoilValue(birthDateAtom);
+
   return (
     <div className="userDetails">
       <div className="title">
@@ -31,7 +39,7 @@ export default function UserDetails() {
           }}/>
           <div className="text">
             <p>닉네임</p>
-            <h6>양파카</h6>
+            <h6>{nickname}</h6>
           </div>
         </div>
         <div className="userDataItem">
@@ -46,7 +54,7 @@ export default function UserDetails() {
           }}/>
           <div className="text">
             <p>이메일</p>
-            <h6>wlq94814@naver.com</h6>
+            <h6>{email}</h6>
           </div>
         </div>
         <div className="userDataItem">
@@ -61,7 +69,7 @@ export default function UserDetails() {
           }}/>
           <div className="text">
             <p>직업</p>
-            <h6>대학생</h6>
+            <h6>{job}</h6>
           </div>
         </div>
         <div className="userDataItem">
@@ -76,7 +84,7 @@ export default function UserDetails() {
           }}/>
           <div className="text">
             <p>거주지</p>
-            <h6>서울특별시</h6>
+            <h6>{address}</h6>
           </div>
         </div>
         <div className="userDataItem">
@@ -91,7 +99,7 @@ export default function UserDetails() {
           }}/>
           <div className="text">
             <p>가입 날짜</p>
-            <h6>2023년 1월 8일</h6>
+            <h6>{birthDate}</h6>
           </div>
         </div>
       </div>
