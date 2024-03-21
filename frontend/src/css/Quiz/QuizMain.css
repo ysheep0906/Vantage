@@ -4,7 +4,149 @@
   margin-top: 20px;
 }
 
-.main .quiz {
+.main .quiz_title {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+}
+
+.main .quiz_title .book_icon {
+  background-color: var(--background-blue-color);
+  color: var(--more-blue-color);
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.main .quiz_title .title {
+  font-size: 18px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.main  {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.main .quiz_list {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0px 1rem;
+}
+
+.main .quiz_list .quiz_desc {
+  width: 80%;
+  margin-top: 10px;
+}
+
+.main .quiz_list .quiz_desc th {
+  margin: 0px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-grey-color);
+}
+
+.main .quiz_list .quiz_desc th:nth-of-type(1) {
+  width: 15%;
+}
+
+.main .quiz_list .quiz_desc th:nth-of-type(2) {
+  width: 15%;
+}
+
+.main .quiz_list .quiz_desc th:nth-of-type(3) {
+  position: relative;
+  width: 50%;
+  right: 14px;
+}
+
+.main .quiz_list .quiz_desc th:nth-of-type(4) {
+  width: 15%;
+}
+
+.main .quiz_list tbody tr {
+  height: 100px;
+}
+
+.main .quiz_list .day_item {
+  width: 80%;
+  
+  margin: 20px 0px;
+  align-items: center;
+  background-color: var(--white-color);
+  border-radius: 10px;
+}
+
+.main .quiz_list .day_item td.day {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.main .quiz_list .day_item span.progress {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.main .quiz_list .day_item td.status {
+  text-align: center;
+
+}
+
+.main .quiz_list .day_item td.action {
+  text-align: center;
+}
+
+.main .quiz_list .day_item td.action button {
+  width: 80px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white-color);
+  background: var(--gradation-color);
+  border: none;
+  cursor: pointer;
+}
+
+.main .quiz_list .day_item td.status span {
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.65;
+  padding: 5px 14px;
+  height: fit-content;
+}
+
+.main .quiz_list .day_item td.status span.pending {
+  background-color: var(--text-grey-color);
+  color: var(--white-color);
+}
+
+.main .quiz_list .day_item td.status span.inProgress{
+  background-color: var(--more-blue-color);
+  color: var(--white-color);
+}
+
+.main .quiz_list .day_item td.status span.completed {
+  background-color: rgb(39, 206, 136);
+  color: var(--white-color);
+}
+
+.main .quiz_list .day_item td:first-of-type {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.main .quiz_list .day_item td:last-of-type {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/*Quizstart, ToeicQuiz 최상위 div*/
+.quiz { 
   background-color: var(--white-color);
   color: var(--black-color);
   width: auto;

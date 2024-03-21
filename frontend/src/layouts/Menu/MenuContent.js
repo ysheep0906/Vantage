@@ -6,7 +6,7 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import '../../css/layout/MenuContent.css';
 
 export default function MenuContent() {
-  const quiz = ['토익 단어 (Day 1~10)', '토익 단어 (Day 11~20)', '토익 단어 (Day 21~30)'];
+  const quiz = ['토익 단어 (초급)', '토익 단어 (중급)', '토익 단어 (고급)'];
   const sat = ['수능 단어 (초급)', '수능 단어 (중급)', '수능 단어 (고급)'];
   const management = ['프로필', '프로젝트 1', '프로젝트 2'];
   let management_lis= [];
@@ -18,8 +18,8 @@ export default function MenuContent() {
   }
 
   for(let i =0; i<quiz.length; i++) {
-    quiz_lis.push(<NavLink key ={i} to={'toeic/'+i}><button className='menu_item'><MenuBookIcon /><span>{quiz[i]}</span></button></NavLink>)
-  }
+    quiz_lis.push(<NavLink key ={i} to={'toeic/'+i}><button className='menu_item' ><MenuBookIcon /><span>{quiz[i]}</span></button></NavLink>)
+  } 
 
   for(let i =0; i<sat.length; i++) {
     sat_lis.push(<NavLink key ={i} to={'sat/'+i}><button className='menu_item'><MenuBookIcon /><span>{sat[i]}</span></button></NavLink>)

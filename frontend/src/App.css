@@ -49,6 +49,10 @@ li {
   padding-left: 0;
 }
 
+span {
+  white-space: nowrap;
+}
+
 .wrap_root {
   width: 100%;
   height: 100vh;

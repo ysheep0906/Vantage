@@ -16,10 +16,9 @@ export default function Register() {
   const [job, setJob] = useState('');
   const [address, setAddress] = useState('');
 
-  const [progress, setProgress] = useState(false);
-  const [flagId, setFlagId] = useState(false);
-  const [idDoubleCheck, setIdDoubleCheck] = useState(true);
-  const [idMsg, setIdMsg] = useState('');
+  const [progress, setProgress] = useState(false); // 회원가입 누를 때 돌아가는 progress 바
+  const [flagAlert, setFlagAlert] = useState(false); // 아이디 중복확인 alert 창 띄울 때 필요한 flag
+  const [idMsg, setIdMsg] = useState(''); // 아이디 창 밑 메시지 
   const navigate = useNavigate();
 
   const checkId = () => {
@@ -46,25 +45,16 @@ export default function Register() {
       return false;
   }
 
-  const setBtnSignup = () => {
-    if(flagId === true) {
-      setIdDoubleCheck(true);
-      SignupCheck(); 
-    } else {
-      setIdDoubleCheck(false);
-    }
-  }
-
   const IdDoubleCheck = async () => {
     //중복 확인 함수
-    setFlagId(true); // 중복 확인이 true가 되었을 때 flag를 true로 바꿔야 함
     if (userid === '') {
-      console.log('아이디를 입력해주세요!')
+      setIdMsg('아이디를 입력해주세요!');
     } else {
       try {
         await axios.post('http://localhost:8080/user/idcheck', { 'loginId': userid })
           .then(res => {
             setIdMsg(res.data.message);
+            setFlagAlert(true);
           }).catch(err => {
             setIdMsg(err.response.data.data.loginId);
           })
@@ -84,29 +74,28 @@ export default function Register() {
     
     //회원가입 버튼 누르기 전에 빈 칸 없는지 확인, 중복확인
     if (handlePasswordCheck() !== false && checkPassword() !== false && checkEmail() !== false && //비밀번호와 이메일이 비워지면 flag값이 true가 되지만 밑 조건으로 조건에 걸리게 됨
-     username !== '' && userid !== '' && password !== '' && nickname !== '' && email !== '' && job !== '' && address !== '') { //비밀번호와 이메일은 형식에 맞지 않으면 회원가입 불가
-      try {
-        const response = await axios.post('http://localhost:8080/user/signup', {
-          "name": username,
-          "loginId": userid,
-          "password": password,
-          "birthDate": dateString,
-          "job": job,
-          "nickname": nickname,
-          "address": address,
-          "email": email
-        });
-        setProgress(true);
-        if (response.data) {
-          
-          console.log(response.data);
-          navigate('/?signup=true');
+      username !== '' && userid !== '' && password !== '' && nickname !== '' && email !== '' && job !== '' && address !== '') { //비밀번호와 이메일은 형식에 맞지 않으면 회원가입 불가
 
-        } else {
-          console.error('Response data is undefined');
-        }
-      } catch (error) {
-        console.error('Error during signup:', error);
+      const response = await axios.post('http://localhost:8080/user/signup', {
+        "name": username,
+        "loginId": userid,
+        "password": password,
+        "birthDate": dateString,
+        "job": job,
+        "nickname": nickname,
+        "address": address,
+        "email": email
+      }).catch(err => console.log(err))
+
+      setProgress(true);
+
+      if (response.data) {
+
+        console.log(response.data);
+        navigate('/?signup=true');
+
+      } else {
+        console.error('Response data is undefined');
       }
     }
   };
@@ -128,7 +117,7 @@ export default function Register() {
             <div className="loginFormTitle"><p>기본 정보</p></div>
             <TextField onChange={e => setUsername(e.target.value)} id="lastName" label="이름"/>
             <div className="loginFormId">
-              <div className="idForm"><TextField onChange={e => {setUserid(e.target.value); setFlagId(false);}} id="userid" label="아이디" error={!checkId()} helperText={idMsg} fullWidth/></div>
+              <div className="idForm"><TextField onChange={e => setUserid(e.target.value)} id="userid" label="아이디" error={!checkId()} helperText={idMsg} fullWidth/></div>
               <button onClick={IdDoubleCheck}>중복 확인</button>
             </div>
             <TextField onChange={e => setPassword(e.target.value)} id="password" label="비밀번호" type="password" error={!checkPassword()} helperText="비밀번호 최소 8자에서 16자까지, 영문, 숫자 및 특수문자 포함"/>
@@ -169,8 +158,8 @@ export default function Register() {
               </Select>
             </FormControl>
             </div>
-            {idDoubleCheck === true ? "" : <Alert severity="error">아이디 중복확인이 필요합니다!</Alert>}
-            <button className="loginButton" onClick={()=>{setBtnSignup();}}>{progress === true ? <CircularProgress size='1rem' color="inherit" /> : '회원가입'}</button>
+            {flagAlert === true ? "" : <Alert severity="error">아이디 중복확인이 필요합니다!</Alert>}
+            <button className="loginButton" onClick={()=>{ SignupCheck(); }}>{progress === true ? <CircularProgress size='1rem' color="inherit" /> : '회원가입'}</button>
           </div>
         </div>
       </div>

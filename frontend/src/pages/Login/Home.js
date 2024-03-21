@@ -11,31 +11,27 @@ import '../../css/Login/Home.css';
 export default function Home() {
   const [userid, setUserid] = useState('');
   const [password, setPassword] = useState('');
-  const [errMessage, setErrMessage] = useState(''); // 어떤 것이 문제인지 체크
+  const [errMessage, setErrMessage] = useState(''); // 회원가입 후 실패했을 때 메시지
+  const [blank, setBlank] = useState(false);
   const setBearer = useSetRecoilState(bearerAtom);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const LoginCheck = async () => {
-
-    try {
+    if (userid === '' || password === '') {
+      setBlank(true);
+    } else {
+      setBlank(false);
       await axios.post('http://localhost:8080/user/signin', {
-        "loginId": userid,
-        "password": password
-      }).then(res => {
-        setBearer(res.data.data.accessToken);
-        navigate('/kr');
-      }).catch(err => {
-        console.log(err.response.data.data)
-      })
-      
-
-    } catch (error) {
-      console.error('Login failed', error);
-      setErrMessage(error);
+          "loginId": userid,
+          "password": password})
+        .then(res => {
+          setBearer(res.data.data.accessToken);
+          navigate('/kr');})
+        .catch(err => {
+          setErrMessage(err.response.data.data['로그인 실패'])})
     }
-
   }
 
   const [open, setOpen] = useState(false);
@@ -51,6 +47,12 @@ export default function Home() {
 
     setOpen(false);
   };
+
+  const PressEnter = (e) => {
+    if (e.key === 'Enter') {
+      LoginCheck();
+    }
+  }
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -76,7 +78,7 @@ export default function Home() {
           </p>
           <div className="loginForm">
             <TextField onChange={e => setUserid(e.target.value)} id="userid" label="아이디" />
-            <TextField onChange={e => setPassword(e.target.value)} id="password" label="비밀번호" type="password" />
+            <TextField onChange={e => setPassword(e.target.value)} onKeyDown={PressEnter} id="password" label="비밀번호" type="password" />
             <div className="remember">
               <div>
                 <Checkbox id='checkbox' />
@@ -86,7 +88,7 @@ export default function Home() {
             </div>
             {errMessage === '' ? '' : <Alert severity="error">{errMessage}</Alert>}
 
-            
+            {blank === false ? '' : <Alert severity="error">아이디 혹은 비밀번호가 공백이면 안됩니다.</Alert>}
             <button className="loginButton" onClick={LoginCheck}>로그인</button>
           </div>
         </div>

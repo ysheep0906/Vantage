@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { React, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
@@ -10,11 +10,10 @@ import PersonIcon from '@mui/icons-material/Person';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
-import {useRecoilState, useRecoilValue, useSetRecoilState} from 'recoil';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
 import '../../css/layout/Header.css';
 import profileImage from '../../asset/images/profile.jpg'
-import { bearerAtom, nicknameAtom, emailAtom, jobAtom, addressAtom, birthDateAtom } from "../../recoil/atoms";
-import axios from "axios";
+import { bearerAtom, nicknameAtom} from "../../recoil/atoms";
 
 const avatar_setting ={
   width: '30px',
@@ -23,12 +22,9 @@ const avatar_setting ={
 
 export default function Header() {
   const [anchorEl, setAnchorEl] = useState(null);
-  const bearer = useRecoilValue(bearerAtom);
-  const [nickname, setNickname] = useRecoilState(nicknameAtom);
-  const setEmail = useSetRecoilState(emailAtom);
-  const setJob = useSetRecoilState(jobAtom);
-  const setAddress = useSetRecoilState(addressAtom);
-  const setBirthDate = useSetRecoilState(birthDateAtom);
+  const setBearer = useSetRecoilState(bearerAtom);
+  const nickname = useRecoilValue(nicknameAtom);
+  
 
   const open = Boolean(anchorEl);
   const navigate = useNavigate();
@@ -43,27 +39,8 @@ export default function Header() {
 
   const handleLogout = async () => {
     navigate('/');
-    //setBearer('')
+    setBearer('')
   };
-
-  useEffect(() => {
-    axios.get('http://localhost:8080/user/info', {
-        headers: { Authorization: `Bearer ${bearer}`}
-      }).then(response => {
-        console.log('H');
-        setNickname(response.data.data.nickname);
-        setEmail(response.data.data.email);
-        setJob(response.data.data.job);
-        setAddress(response.data.data.address);
-
-        const date = response.data.data.birthDate;
-        setBirthDate(date.substr(0,4) + '년 ' + date.substr(4,2) + '월 ' + date.substr(6,2) + '일');
-     })
-    .catch((error) => {
-        console.log('error ' + error);
-     });     
-  }, [bearer, setAddress, setBirthDate, setEmail, setJob, setNickname]);
-  
 
   return (
     <div className="header_root">
