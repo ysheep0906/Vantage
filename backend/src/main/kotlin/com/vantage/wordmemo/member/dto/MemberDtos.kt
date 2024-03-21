@@ -50,6 +50,9 @@ data class MemberDtoRequest(
     @JsonProperty("birthDate")
     private val _birthDate: String?,
 
+    @JsonProperty("rank")
+    private val _rank: Long?,
+
     /* 사용 여부 미정
     @field:NotBlank
     @field:ValidEnum(enumClass = Gender::class, message = "MAN 이나 WOMAN 중 하나를 선택해주세요.")
@@ -74,6 +77,10 @@ data class MemberDtoRequest(
         get() = _address
     val birthDate: LocalDate?
         get() = _birthDate?.toLocalDate()
+
+    val rank: Long?
+        get() = _rank
+
     /*사용 여부 미정
     val gender: Gender
         get() = Gender.valueof(_gender!!)
@@ -85,7 +92,7 @@ data class MemberDtoRequest(
 
     //entity로 변환해서 반환하는 함수
     fun toEntity(): Member =
-        Member(id, name, loginId, password, nickname, email, job, address, birthDate)
+        Member(id, name, loginId, password, nickname, email, job, address, birthDate, rank)
 }
 
 //login을 위한 Dto
@@ -114,6 +121,7 @@ data class MemberDtoResponse(
     val address: String?,
     val email: String?,
     val birthDate: String?,
+    val rank: Long?,
     //val gender: String,
 
 )

@@ -43,6 +43,11 @@ class Member(
     @Temporal(TemporalType.DATE) //날짜만 입력 가능
     var birthDate: LocalDate? = null,
 
+
+    @Column(nullable = true)
+    var rank: Long? = null,
+
+
     /* 사용 미정
     @Column(nullable = ture, length = 5)
     @Enumerated(EnumType.STRING)
@@ -60,7 +65,7 @@ class Member(
 
     //MemberDtoResponse 반환
     fun toDto(): MemberDtoResponse =
-        MemberDtoResponse(id!!, name, loginId, nickname, job, address, email, birthDate?.formatDate())
+        MemberDtoResponse(id!!, name, loginId, nickname, job, address, email, birthDate?.formatDate(), rank)
 }
 
 //권한 릴레이션
@@ -81,6 +86,34 @@ class MemberRole(
     val member: Member,
 )
 
+//회원 프로필 사진 릴레이션
+@Entity
+@Table(name = "profile_images")
+class ProfileImage(
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+        val id: Long,
+
+        @Column(nullable = false)
+        val memberId: Long,
+
+        @Column(nullable = true)
+        var imagePath: String,
+)
+
+//단어 카테고리 릴레이션
+@Entity
+@Table(name = "word_category")
+class WordCategory(
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+        val id: Long,
+
+        @Column(nullable = false)
+        val type: String,
+
+        @Column(nullable = false)
+        val level: String,
+)
+
 //단어 릴레이션
 @Entity
 @Table(name = "word")
@@ -89,11 +122,21 @@ class Word(
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Long? = null,
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    val category: WordCategory,
+
+    @Column(nullable = false)
+    val dat: Int,
+
     @Column(nullable = false, length = 50)
     val word: String,
 
     @Column(nullable = false, length = 255)
     val meaning: String,
+
+    @Column(nullable = true)
+    var pronunciationUrl: String,
 
     @Column(nullable = true, length = 255)
     var altMeaning1: String? = null,
@@ -112,4 +155,45 @@ class Word(
 
     @Column(nullable = true, length = 255)
     var altMeaning6: String? = null
+)
+
+//유저별 단어 릴레이션
+@Entity
+@Table(name = "member_words")
+class MemberWord(
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+        val id: Long,
+
+        @ManyToOne
+        @JoinColumn(name = "member_id", referencedColumnName = "id")
+        val member: Member,
+
+        @ManyToOne
+        @JoinColumn(name = "word_category_id", referencedColumnName = "id")
+        val wordCategory: WordCategory,
+
+        @Column(nullable = false)
+        val status: String,
+
+        @Column(name = "correct_count")
+        val correctCount: Int,
+
+        @Column(name = "wrong_count")
+        val wrongCount: Int,
+)
+
+//유저별 즐겨찾기 단어 릴레이션
+@Entity
+@Table(name = "favorite_words")
+class FavoriteWord(
+        @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+        val id: Long,
+
+        @ManyToOne
+        @JoinColumn(name = "member_id", referencedColumnName = "id")
+        val member: Member,
+
+        @ManyToOne
+        @JoinColumn(name = "word_id", referencedColumnName = "id")
+        val word: Word
 )
